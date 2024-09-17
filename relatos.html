@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatos</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: #FFD700;
+            color: #333;
+            padding: 15px 20px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000; /* Para garantir que o cabeçalho esteja acima do conteúdo */
+        }
+
+        header h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2em; /* Aumentado para melhor visibilidade */
+            margin: 0;
+            color: #333;
+            text-align: center;
+            flex: 1; /* Faz o título ocupar o espaço disponível */
+        }
+
+        .btn-home-header {
+            background-color: #ff8c00;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        .btn-home-header:hover {
+            background-color: #e07b00;
+        }
+
+        .anonimato {
+            padding: 15px;
+            background-color: #eaf0e8;
+            border-left: 5px solid #8dc63f;
+            border-radius: 8px;
+            font-size: 1.2em; /* Aumentado para melhor legibilidade */
+            color: #333;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 100px; /* Ajustado para maior espaçamento em relação ao cabeçalho */
+            text-align: center;
+        }
+
+        .carrossel {
+            padding: 20px;
+            text-align: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+
+        .carrossel-item {
+            display: none;
+            font-size: 1.2em; /* Ajustado para legibilidade */
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #fff;
+            margin: 20px auto;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            line-height: 1.8; /* Melhor legibilidade */
+            position: relative;
+            text-align: left;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .carrossel-item.active {
+            display: block;
+        }
+
+        .carrossel-item h2 {
+            font-size: 1.5em; /* Aumentado para destaque */
+            margin-top: 0;
+            color: #ff8c00; /* Cor de destaque */
+        }
+
+        .carrossel-item p {
+            font-size: 1.1em; /* Tamanho da fonte aumentado */
+            margin-bottom: 15px;
+        }
+
+        .carrossel-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        footer {
+            background-color: #FFD700;
+            color: #333;
+            text-align: center;
+            padding: 15px;
+            font-size: 1em; /* Aumentado para melhor visibilidade */
+            box-sizing: border-box;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <a href="index.html" class="btn-home-header">Página Inicial</a>
+        <h1>Relatos</h1>
+    </header>
+
+    <div class="anonimato">
+        Todos os relatos são anônimos. Sua privacidade é fundamental para nós.
+    </div>
+
+    <div class="carrossel">
+        <!-- Relatos serão injetados aqui pelo JavaScript -->
+    </div>
+
+    <footer>
+        <p>Setembro Amarelo - Mês de Prevenção ao Suicídio. <a href="https://www.cvv.org.br/" target="_blank">Saiba mais</a>.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const carrossel = document.querySelector('.carrossel');
+            const relatos = JSON.parse(localStorage.getItem('relatos')) || [];
+
+            if (relatos.length === 0) {
+                carrossel.innerHTML = '<p>Nenhum relato encontrado.</p>';
+            } else {
+                relatos.forEach((relato, index) => {
+                    const div = document.createElement('div');
+                    div.className = 'carrossel-item';
+                    div.innerHTML = `<h2>Relato ${index + 1}</h2><p><strong>${relato.nome}</strong> (${new Date(relato.data).toLocaleDateString()}): ${relato.conteudo}</p>`;
+                    carrossel.appendChild(div);
+                });
+
+                let currentIndex = 0;
+                const items = document.querySelectorAll('.carrossel-item');
+
+                function showSlide(index) {
+                    items.forEach((item, i) => {
+                        item.classList.toggle('active', i === index);
+                    });
+                }
+
+                function nextSlide() {
+                    currentIndex = (currentIndex + 1) % items.length;
+                    showSlide(currentIndex);
+                }
+
+                showSlide(currentIndex);
+                setInterval(nextSlide, 5000); // Muda o slide a cada 5 segundos
+            }
+        });
+    </script>
+</body>
+</html>

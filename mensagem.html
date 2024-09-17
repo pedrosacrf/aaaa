@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mensagem de Agradecimento</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            box-sizing: border-box;
+        }
+        header {
+            background-color: #FFD700;
+            color: #333;
+            padding: 15px 20px;
+            text-align: center;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            box-sizing: border-box;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        header h1 {
+            font-family: 'Roboto', sans-serif;
+            font-size: 2em;
+            margin: 0;
+            color: #333;
+        }
+        .btn-voltar-header {
+            position: absolute;
+            right: 20px;
+            top: 15px;
+            background-color: #ff8c00;
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        .btn-voltar-header:hover {
+            background-color: #e07b00;
+        }
+        .content {
+            padding: 80px 20px 60px;
+            text-align: center;
+            min-height: 100vh;
+            box-sizing: border-box;
+        }
+        .content h2 {
+            font-size: 2em;
+            margin: 20px 0;
+        }
+        .content p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+        .btn-voltar {
+            display: inline-block;
+            padding: 15px 30px;
+            background-color: #ff8c00;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background-color 0.3s;
+            font-size: 1.2em;
+        }
+        .btn-voltar:hover {
+            background-color: #e07b00;
+        }
+        .anonimato {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #eaf0e8;
+            border-left: 5px solid #8dc63f;
+            border-radius: 8px;
+            font-size: 1.2em;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Obrigado por Compartilhar</h1>
+        <a href="index.html" class="btn-voltar-header">Voltar</a>
+    </header>
+    <div class="content">
+        <h2>Mensagem Recebida</h2>
+        <p>Seu relato foi enviado com sucesso. Agradecemos por compartilhar sua experiência. Se você precisar de ajuda, não hesite em buscar apoio.</p>
+        <a href="relatos.html" class="btn-voltar">Ver Relatos</a>
+        <div class="anonimato">
+            <p>Todos os relatos são anônimos e são divulgados com a máxima confidencialidade para garantir a privacidade dos participantes.</p>
+        </div>
+    </div>
+</body>
+</html>
